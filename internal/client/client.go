@@ -10,6 +10,22 @@ type Client struct {
 	Connection *amqp.Connection
 }
 
+func (c *Client) Push() error {
+	ch, err := c.Connection.Channel()
+	if err != nil {
+		return err
+	}
+
+	defer func() {
+		err := ch.Close()
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	return nil
+}
+
 func (c *Client) Listen() error {
 	ch, err := c.Connection.Channel()
 	if err != nil {
