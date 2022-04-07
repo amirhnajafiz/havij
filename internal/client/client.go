@@ -27,10 +27,10 @@ func (c *Client) Push() error {
 
 	_, err = ch.QueueDeclare(
 		c.Queue,
-		false,
-		false,
-		false,
-		false,
+		c.Cfg.Durable,
+		c.Cfg.AutoDelete,
+		c.Cfg.Exclusive,
+		!c.Cfg.Wait,
 		nil,
 	)
 	if err != nil {
@@ -40,8 +40,8 @@ func (c *Client) Push() error {
 	err = ch.Publish(
 		"",
 		c.Queue,
-		false,
-		false,
+		c.Cfg.Mandatory,
+		c.Cfg.Immediate,
 		amqp.Publishing{
 			ContentType: "text/plain",
 			Body:        []byte("Hello"),
@@ -71,10 +71,10 @@ func (c *Client) Listen() error {
 	messages, err := ch.Consume(
 		c.Queue,
 		"",
-		true,
-		false,
-		false,
-		false,
+		c.Cfg.AutoAck,
+		c.Cfg.Exclusive,
+		!c.Cfg.Local,
+		!c.Cfg.Wait,
 		nil,
 	)
 

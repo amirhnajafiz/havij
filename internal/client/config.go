@@ -8,4 +8,5 @@ type Config struct {
 	Mandatory  bool
 	Immediate  bool
 	Local      bool
+	AutoAck    bool
 }
