@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/amirhnajafiz/playful-rabbit/internal/cmd"
 
 func main() {
-	fmt.Println("vi go")
+	cmd.Execute()
 }
