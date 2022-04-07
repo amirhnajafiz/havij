@@ -23,6 +23,33 @@ func (c *Client) Push() error {
 		}
 	}()
 
+	_, err = ch.QueueDeclare(
+		"Queue",
+		false,
+		false,
+		false,
+		false,
+		nil,
+	)
+	if err != nil {
+		return err
+	}
+
+	err := ch.Publish(
+		"",
+		"Queue",
+		false,
+		false,
+		amqp.Publishing{
+			ContentType: "text/plain",
+			Body:        []byte("Hello"),
+		},
+	)
+
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
