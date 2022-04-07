@@ -1,0 +1,5 @@
+package rabbitMQT
+
+func Init() {
+
+}
