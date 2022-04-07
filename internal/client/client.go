@@ -7,6 +7,7 @@ import (
 )
 
 type Client struct {
+	Cfg        Config
 	Queue      string
 	Connection *amqp.Connection
 }
