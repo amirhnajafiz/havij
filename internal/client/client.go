@@ -7,6 +7,7 @@ import (
 )
 
 type Client struct {
+	Queue      string
 	Connection *amqp.Connection
 }
 
@@ -24,7 +25,7 @@ func (c *Client) Push() error {
 	}()
 
 	_, err = ch.QueueDeclare(
-		"Queue",
+		c.Queue,
 		false,
 		false,
 		false,
@@ -35,9 +36,9 @@ func (c *Client) Push() error {
 		return err
 	}
 
-	err := ch.Publish(
+	err = ch.Publish(
 		"",
-		"Queue",
+		c.Queue,
 		false,
 		false,
 		amqp.Publishing{
@@ -67,7 +68,7 @@ func (c *Client) Listen() error {
 	}()
 
 	messages, err := ch.Consume(
-		"Queue",
+		c.Queue,
 		"",
 		true,
 		false,
