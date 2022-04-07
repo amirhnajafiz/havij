@@ -23,11 +23,23 @@ func (c *Client) Listen() error {
 		}
 	}()
 
-	msgs, err := ch.Consume("Queue", "", true, false, false, false, nil)
+	messages, err := ch.Consume(
+		"Queue",
+		"",
+		true,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	if err != nil {
+		return err
+	}
 
 	forever := make(chan bool)
 	go func() {
-		for d := range msgs {
+		for d := range messages {
 			fmt.Printf("%v \n", d)
 		}
 	}()
