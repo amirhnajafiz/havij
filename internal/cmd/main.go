@@ -14,6 +14,7 @@ func Execute() {
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
+			Queue:      c.Queue,
 		}
 
 		_ = cli.Listen()
@@ -23,6 +24,7 @@ func Execute() {
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
+			Queue:      c.Queue,
 		}
 
 		_ = cli.Push()

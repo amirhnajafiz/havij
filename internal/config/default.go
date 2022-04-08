@@ -7,6 +7,7 @@ import (
 
 func Default() Config {
 	return Config{
+		Queue: "master",
 		Client: client.Config{
 			Durable:    false,
 			AutoDelete: false,
