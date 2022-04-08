@@ -3,6 +3,8 @@ package config
 import (
 	"log"
 
+	"github.com/amirhnajafiz/playful-rabbit/internal/client"
+	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
@@ -10,6 +12,8 @@ import (
 )
 
 type Config struct {
+	Client client.Config    `koanf:"client"`
+	Rabbit rabbitMQT.Config `koanf:"rabbit"`
 }
 
 func Load() Config {
