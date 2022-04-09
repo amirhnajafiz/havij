@@ -4,10 +4,12 @@ import (
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
 	"github.com/amirhnajafiz/playful-rabbit/internal/config"
 	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
+	"github.com/amirhnajafiz/playful-rabbit/internal/test"
 )
 
 func Execute() {
 	c := config.Load()
+	tests := test.Generate(20)
 
 	{
 		r, _ := rabbitMQT.Init(c.Rabbit)
@@ -27,6 +29,8 @@ func Execute() {
 			Queue:      c.Queue,
 		}
 
-		_ = cli.Push()
+		for _, t := range tests {
+			_ = cli.Push(t.Id + " Brear " + t.Content)
+		}
 	}
 }

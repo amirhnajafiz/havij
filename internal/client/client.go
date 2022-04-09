@@ -12,7 +12,7 @@ type Client struct {
 	Connection *amqp.Connection
 }
 
-func (c *Client) Push() error {
+func (c *Client) Push(s string) error {
 	ch, err := c.Connection.Channel()
 	if err != nil {
 		return err
@@ -44,7 +44,7 @@ func (c *Client) Push() error {
 		c.Cfg.Immediate,
 		amqp.Publishing{
 			ContentType: "text/plain",
-			Body:        []byte("Hello"),
+			Body:        []byte(s),
 		},
 	)
 
