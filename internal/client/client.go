@@ -2,9 +2,9 @@ package client
 
 import (
 	"fmt"
-	"github.com/amirhnajafiz/playful-rabbit/internal/test"
 	"strings"
 
+	"github.com/amirhnajafiz/playful-rabbit/internal/test"
 	"github.com/streadway/amqp"
 )
 
