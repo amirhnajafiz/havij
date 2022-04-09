@@ -36,3 +36,17 @@ func Done(Id string) bool {
 
 	return false
 }
+
+func Generate(number int) []*Test {
+	for i := 0; i < number; i++ {
+		temp := Test{
+			Id:      time.UnixMilli(int64(i)).String(),
+			Content: "", // random text
+			Start:   time.Now(),
+		}
+
+		New(&temp)
+	}
+
+	return tests
+}
