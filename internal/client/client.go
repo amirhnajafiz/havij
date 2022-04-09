@@ -88,9 +88,8 @@ func (c *Client) Listen() error {
 	go func() {
 		for d := range messages {
 			parts := strings.Split(string(d.Body), " Brear ")
-			if test.Find(parts[0]) {
-				test.Done(parts[0])
-			}
+
+			test.Done(parts[0])
 
 			fmt.Printf("[%s]: %s \n", parts[0], parts[1])
 		}
