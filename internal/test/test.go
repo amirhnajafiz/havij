@@ -7,10 +7,14 @@ import (
 )
 
 var tests []*Test
+var timeout int
 
 type Test struct {
-	Id       string
-	Content  string
+	Id      string
+	Content string
+
+	Missed bool
+
 	Start    time.Time
 	Duration time.Duration
 }
@@ -34,6 +38,10 @@ func Done(Id string) bool {
 		if test.Id == Id {
 			test.Duration = test.Start.Sub(time.Now())
 
+			if test.Duration > time.Duration(timeout) {
+				test.Missed = true
+			}
+
 			return true
 		}
 	}
@@ -47,6 +55,7 @@ func Generate(number int) []*Test {
 			Id:      time.UnixMilli(int64(i)).String(),
 			Content: faker.Sentence(), // random text
 			Start:   time.Now(),
+			Missed:  false,
 		}
 
 		New(&temp)
