@@ -1,6 +1,10 @@
 package test
 
-import "time"
+import (
+	"time"
+
+	"github.com/bxcodec/faker/v3"
+)
 
 var tests []*Test
 
@@ -41,7 +45,7 @@ func Generate(number int) []*Test {
 	for i := 0; i < number; i++ {
 		temp := Test{
 			Id:      time.UnixMilli(int64(i)).String(),
-			Content: "", // random text
+			Content: faker.Sentence(), // random text
 			Start:   time.Now(),
 		}
 
