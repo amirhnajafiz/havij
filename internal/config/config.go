@@ -5,6 +5,7 @@ import (
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
 	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
+	"github.com/amirhnajafiz/playful-rabbit/internal/test"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
@@ -15,6 +16,7 @@ type Config struct {
 	Queue  string           `koanf:"queue"`
 	Client client.Config    `koanf:"client"`
 	Rabbit rabbitMQT.Config `koanf:"rabbit"`
+	Test   test.Config      `koanf:"test"`
 }
 
 func Load() Config {
