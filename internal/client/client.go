@@ -2,6 +2,8 @@ package client
 
 import (
 	"fmt"
+	"github.com/amirhnajafiz/playful-rabbit/internal/test"
+	"strings"
 
 	"github.com/streadway/amqp"
 )
@@ -85,7 +87,12 @@ func (c *Client) Listen() error {
 	forever := make(chan bool)
 	go func() {
 		for d := range messages {
-			fmt.Printf("%v \n", d)
+			parts := strings.Split(string(d.Body), " Brear ")
+			if test.Find(parts[0]) {
+				test.Done(parts[0])
+			}
+
+			fmt.Printf("[%s]: %s \n", parts[0], parts[1])
 		}
 	}()
 

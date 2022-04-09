@@ -15,14 +15,14 @@ func New(test *Test) {
 	tests = append(tests, test)
 }
 
-func Find(Id string) *Test {
+func Find(Id string) bool {
 	for _, test := range tests {
 		if test.Id == Id {
-			return test
+			return true
 		}
 	}
 
-	return nil
+	return false
 }
 
 func Done(Id string) bool {
