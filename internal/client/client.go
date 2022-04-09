@@ -57,7 +57,7 @@ func (c *Client) Push(s string) error {
 	return nil
 }
 
-func (c *Client) Listen() error {
+func (c *Client) Listen(timeout int) error {
 	ch, err := c.Connection.Channel()
 	if err != nil {
 		return err
@@ -89,7 +89,7 @@ func (c *Client) Listen() error {
 		for d := range messages {
 			parts := strings.Split(string(d.Body), " Brear ")
 
-			test.Done(parts[0])
+			test.Done(parts[0], timeout)
 
 			fmt.Printf("[%s]: %s \n", parts[0], parts[1])
 		}

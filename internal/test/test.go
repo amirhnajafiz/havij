@@ -7,7 +7,6 @@ import (
 )
 
 var tests []*Test
-var timeout int
 
 type Test struct {
 	Id      string
@@ -33,7 +32,7 @@ func find(Id string) bool {
 	return false
 }
 
-func Done(Id string) bool {
+func Done(Id string, timeout int) bool {
 	if !find(Id) {
 		return false
 	}

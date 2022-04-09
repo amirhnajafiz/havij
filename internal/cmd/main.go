@@ -19,7 +19,7 @@ func Execute() {
 			Queue:      c.Queue,
 		}
 
-		_ = cli.Listen()
+		_ = cli.Listen(c.Test.Timeout)
 	}
 	{
 		r, _ := rabbitMQT.Init(c.Rabbit)
