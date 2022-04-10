@@ -20,7 +20,7 @@ func Default() Config {
 			AutoAck:    true,
 		},
 		Rabbit: rabbitMQT.Config{
-			Host: "127.0.0.1:4369",
+			Host: "amqp://127.0.0.1:4369",
 		},
 		Test: test.Config{
 			Number:  10,
