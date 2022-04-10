@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
 	"github.com/amirhnajafiz/playful-rabbit/internal/config"
@@ -14,7 +15,11 @@ func Execute() {
 	tests := test.Generate(20)
 
 	{
-		r, _ := rabbitMQT.Init(c.Rabbit)
+		r, err := rabbitMQT.Init(c.Rabbit)
+		if err != nil {
+			log.Fatalf("Rabbit connection failed %v\n", err)
+		}
+
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
@@ -24,7 +29,11 @@ func Execute() {
 		_ = cli.Listen(c.Test.Timeout)
 	}
 	{
-		r, _ := rabbitMQT.Init(c.Rabbit)
+		r, err := rabbitMQT.Init(c.Rabbit)
+		if err != nil {
+			log.Fatalf("Rabbit connection failed %v\n", err)
+		}
+
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
