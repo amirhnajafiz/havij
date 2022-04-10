@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
@@ -26,12 +27,12 @@ func Load() Config {
 
 	// load default
 	if err := k.Load(structs.Provider(Default(), "koanf"), nil); err != nil {
-		log.Fatalf("error loading deafult: %v\n", err)
+		_ = fmt.Errorf("error loading deafult: %v\n", err)
 	}
 
 	// load configs file
 	if err := k.Load(file.Provider("config.yaml"), yaml.Parser()); err != nil {
-		log.Fatalf("error loading config.yaml file: %v\n", err)
+		_ = fmt.Errorf("error loading config.yaml file: %v\n", err)
 	}
 
 	// unmarshalling
