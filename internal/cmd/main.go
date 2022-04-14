@@ -15,6 +15,7 @@ func Execute() {
 	tests := test.Generate(c.Test.Number)
 
 	logger.CreateLogFile("logs.txt")
+	log.Println("start testing")
 
 	{
 		r, err := rabbitMQT.Init(c.Rabbit)
@@ -28,7 +29,12 @@ func Execute() {
 			Queue:      c.Queue,
 		}
 
-		_ = cli.Listen(c.Test.Timeout)
+		go func() {
+			err := cli.Listen(c.Test.Timeout)
+			if err != nil {
+				log.Fatalf(err.Error())
+			}
+		}()
 	}
 	{
 		r, err := rabbitMQT.Init(c.Rabbit)

@@ -63,13 +63,6 @@ func (c *Client) Listen(timeout int) error {
 		return err
 	}
 
-	defer func() {
-		err := ch.Close()
-		if err != nil {
-			panic(err)
-		}
-	}()
-
 	messages, err := ch.Consume(
 		c.Queue,
 		"",
