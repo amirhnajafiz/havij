@@ -6,7 +6,6 @@ type Config struct {
 	Exclusive  bool
 	Wait       bool
 	Mandatory  bool
-	Immediate  bool
 	Local      bool
 	AutoAck    bool
 }

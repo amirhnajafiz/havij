@@ -16,7 +16,6 @@ func Default() Config {
 			Exclusive:  false,
 			Wait:       true,
 			Mandatory:  false,
-			Immediate:  true,
 			Local:      false,
 			AutoAck:    true,
 		},
