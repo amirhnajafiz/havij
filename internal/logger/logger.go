@@ -1,6 +1,9 @@
 package logger
 
-import "os"
+import (
+	"log"
+	"os"
+)
 
 func CreateLogFile(name string) {
 	f, err := os.OpenFile(name, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
@@ -14,4 +17,6 @@ func CreateLogFile(name string) {
 			panic(err)
 		}
 	}(f)
+
+	log.SetOutput(f)
 }
