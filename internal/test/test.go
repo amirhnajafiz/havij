@@ -39,7 +39,7 @@ func Done(Id string, timeout int) (bool, time.Duration) {
 
 	for _, test := range tests {
 		if test.Id == Id {
-			test.Duration = test.Start.Sub(time.Now())
+			test.Duration = time.Now().Sub(test.Start)
 
 			if test.Duration > time.Duration(timeout) {
 				test.Missed = true

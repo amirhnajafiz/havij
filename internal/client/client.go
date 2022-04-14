@@ -77,7 +77,7 @@ func (c *Client) Listen(timeout int) error {
 
 			r, du := test.Done(parts[0], timeout)
 
-			log.Printf("[test %s][duration %s][timeout %t]: %s \n", parts[0], du, r, parts[1])
+			log.Printf("[test %s][duration %s][timeout %t]: %s \n", parts[0], du, !r, parts[1])
 		}
 	}()
 
