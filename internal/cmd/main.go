@@ -43,7 +43,7 @@ func Execute() {
 		}
 
 		for _, t := range tests {
-			_ = cli.Push(t.Id + " Brear " + t.Content)
+			_ = cli.Push(t.Id + c.Prefix + t.Content)
 		}
 	}
 }

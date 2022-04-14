@@ -8,7 +8,8 @@ import (
 
 func Default() Config {
 	return Config{
-		Queue: "master",
+		Queue:  "master",
+		Prefix: " Brear ",
 		Client: client.Config{
 			Durable:    false,
 			AutoDelete: false,

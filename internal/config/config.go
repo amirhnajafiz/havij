@@ -15,6 +15,7 @@ import (
 
 type Config struct {
 	Queue  string           `koanf:"queue"`
+	Prefix string           `koanf:"prefix"`
 	Client client.Config    `koanf:"client"`
 	Rabbit rabbitMQT.Config `koanf:"rabbit"`
 	Test   test.Config      `koanf:"test"`
