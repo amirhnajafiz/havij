@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
@@ -43,9 +42,5 @@ func Execute() {
 		for _, t := range tests {
 			_ = cli.Push(t.Id + " Brear " + t.Content)
 		}
-	}
-
-	for _, t := range tests {
-		fmt.Println(t)
 	}
 }
