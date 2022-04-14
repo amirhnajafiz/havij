@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: building our go servie
-      run: go build ./cmd -o ./runner
+      run: make build
