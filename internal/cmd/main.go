@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"log"
+	"sync"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
 	"github.com/amirhnajafiz/playful-rabbit/internal/config"
@@ -11,6 +12,9 @@ import (
 )
 
 func Execute() {
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+
 	c := config.Load()
 	tests := test.Generate(c.Test.Number)
 
@@ -34,6 +38,8 @@ func Execute() {
 			if err != nil {
 				panic(err)
 			}
+
+			wg.Done()
 		}()
 	}
 	{
@@ -55,4 +61,6 @@ func Execute() {
 			}
 		}
 	}
+
+	wg.Wait()
 }

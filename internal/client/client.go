@@ -36,7 +36,7 @@ func (c *Client) Push(s string) error {
 		"",
 		c.Queue,
 		c.Cfg.Mandatory,
-		c.Cfg.Immediate,
+		false,
 		amqp.Publishing{
 			ContentType: "text/plain",
 			Body:        []byte(s),
