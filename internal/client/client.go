@@ -20,13 +20,6 @@ func (c *Client) Push(s string) error {
 		return err
 	}
 
-	defer func() {
-		err := ch.Close()
-		if err != nil {
-			panic(err)
-		}
-	}()
-
 	_, err = ch.QueueDeclare(
 		c.Queue,
 		c.Cfg.Durable,

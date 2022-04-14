@@ -29,12 +29,7 @@ func Execute() {
 			Queue:      c.Queue,
 		}
 
-		go func() {
-			err := cli.Listen(c.Test.Timeout)
-			if err != nil {
-				log.Fatalf(err.Error())
-			}
-		}()
+		_ = cli.Listen(c.Test.Timeout)
 	}
 	{
 		r, err := rabbitMQT.Init(c.Rabbit)
