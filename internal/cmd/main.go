@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
@@ -18,21 +17,31 @@ func Execute() {
 	logger.CreateLogFile("logs.txt")
 	log.Println("start testing")
 
-	r, err := rabbitMQT.Init(c.Rabbit)
-	if err != nil {
-		log.Fatalf("Rabbit connection failed %v\n", err)
-	}
-
 	{
+		r, err := rabbitMQT.Init(c.Rabbit)
+		if err != nil {
+			log.Fatalf("Rabbit connection failed %v\n", err)
+		}
+
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
 			Queue:      c.Queue,
 		}
 
-		go cli.Listen(c.Test.Timeout)
+		go func() {
+			err := cli.Listen(c.Test.Timeout)
+			if err != nil {
+				panic(err)
+			}
+		}()
 	}
 	{
+		r, err := rabbitMQT.Init(c.Rabbit)
+		if err != nil {
+			log.Fatalf("Rabbit connection failed %v\n", err)
+		}
+
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
@@ -42,7 +51,7 @@ func Execute() {
 		for _, t := range tests {
 			err := cli.Push(t.Id + c.Prefix + t.Content)
 			if err != nil {
-				_ = fmt.Errorf(err.Error())
+				panic(err)
 			}
 		}
 	}
