@@ -32,9 +32,9 @@ func find(Id string) bool {
 	return false
 }
 
-func Done(Id string, timeout int) bool {
+func Done(Id string, timeout int) (bool, time.Duration) {
 	if !find(Id) {
-		return false
+		return false, 0
 	}
 
 	for _, test := range tests {
@@ -45,11 +45,11 @@ func Done(Id string, timeout int) bool {
 				test.Missed = true
 			}
 
-			return test.Missed
+			return test.Missed, test.Duration
 		}
 	}
 
-	return false
+	return false, 0
 }
 
 func Generate(number int) []*Test {
