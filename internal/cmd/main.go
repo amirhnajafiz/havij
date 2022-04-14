@@ -5,13 +5,16 @@ import (
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
 	"github.com/amirhnajafiz/playful-rabbit/internal/config"
+	"github.com/amirhnajafiz/playful-rabbit/internal/logger"
 	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
 	"github.com/amirhnajafiz/playful-rabbit/internal/test"
 )
 
 func Execute() {
 	c := config.Load()
-	tests := test.Generate(20)
+	tests := test.Generate(c.Test.Number)
+
+	logger.CreateLogFile("logs.txt")
 
 	{
 		r, err := rabbitMQT.Init(c.Rabbit)
