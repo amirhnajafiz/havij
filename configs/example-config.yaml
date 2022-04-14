@@ -1,0 +1,15 @@
+queue: ""
+prefix: ""
+client:
+  durable: false
+  auto_delete: false
+  exclusive: false
+  wait: true
+  mandatory: false
+  local: false
+  auto_ack: true
+rabbit:
+  host: ""
+test:
+  number: 100
+  time_out: 2

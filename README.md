@@ -22,7 +22,7 @@ rabbit:
 ...
 test:
   number: "number of tests"
-  timeout: "timeout for messages"
+  time_out: "timeout for messages"
 ```
 
 Now you can set the RabbitMQT address and some configs

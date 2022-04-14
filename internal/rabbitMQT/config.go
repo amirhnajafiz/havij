@@ -1,5 +1,5 @@
 package rabbitMQT
 
 type Config struct {
-	Host string
+	Host string `koanf:"host"`
 }
