@@ -1,7 +1,7 @@
 package client
 
 import (
-	"fmt"
+	"log"
 	"strings"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/test"
@@ -89,9 +89,9 @@ func (c *Client) Listen(timeout int) error {
 		for d := range messages {
 			parts := strings.Split(string(d.Body), " Brear ")
 
-			test.Done(parts[0], timeout)
+			res := test.Done(parts[0], timeout)
 
-			fmt.Printf("[%s]: %s \n", parts[0], parts[1])
+			log.Printf("[test %s][timeout %t]: %s \n", parts[0], res, parts[1])
 		}
 	}()
 

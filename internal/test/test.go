@@ -45,7 +45,7 @@ func Done(Id string, timeout int) bool {
 				test.Missed = true
 			}
 
-			return true
+			return test.Missed
 		}
 	}
 
