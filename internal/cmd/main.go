@@ -17,12 +17,12 @@ func Execute() {
 	logger.CreateLogFile("logs.txt")
 	log.Println("start testing")
 
-	{
-		r, err := rabbitMQT.Init(c.Rabbit)
-		if err != nil {
-			log.Fatalf("Rabbit connection failed %v\n", err)
-		}
+	r, err := rabbitMQT.Init(c.Rabbit)
+	if err != nil {
+		log.Fatalf("Rabbit connection failed %v\n", err)
+	}
 
+	{
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
@@ -32,11 +32,6 @@ func Execute() {
 		_ = cli.Listen(c.Test.Timeout)
 	}
 	{
-		r, err := rabbitMQT.Init(c.Rabbit)
-		if err != nil {
-			log.Fatalf("Rabbit connection failed %v\n", err)
-		}
-
 		cli := client.Client{
 			Cfg:        c.Client,
 			Connection: r,
