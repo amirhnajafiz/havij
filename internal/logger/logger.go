@@ -11,12 +11,5 @@ func CreateLogFile(name string) {
 		panic(err)
 	}
 
-	defer func(f *os.File) {
-		err := f.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(f)
-
 	log.SetOutput(f)
 }
