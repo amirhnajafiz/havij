@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   app:
+    container_name: playful-rabbit
     depends_on:
       - rabbitmq
     build:
