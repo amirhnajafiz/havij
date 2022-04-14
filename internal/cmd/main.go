@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/amirhnajafiz/playful-rabbit/internal/client"
@@ -29,7 +30,7 @@ func Execute() {
 			Queue:      c.Queue,
 		}
 
-		_ = cli.Listen(c.Test.Timeout)
+		go cli.Listen(c.Test.Timeout)
 	}
 	{
 		cli := client.Client{
@@ -39,7 +40,10 @@ func Execute() {
 		}
 
 		for _, t := range tests {
-			_ = cli.Push(t.Id + c.Prefix + t.Content)
+			err := cli.Push(t.Id + c.Prefix + t.Content)
+			if err != nil {
+				_ = fmt.Errorf(err.Error())
+			}
 		}
 	}
 }
