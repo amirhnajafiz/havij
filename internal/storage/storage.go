@@ -1,8 +1,9 @@
 package storage
 
 import (
-	"github.com/amirhnajafiz/carrot/internal/telemetry"
 	"time"
+
+	"github.com/amirhnajafiz/carrot/internal/telemetry"
 )
 
 // storage is for holding tests.

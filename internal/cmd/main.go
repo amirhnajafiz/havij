@@ -9,6 +9,7 @@ import (
 	"github.com/amirhnajafiz/carrot/internal/logger"
 	"github.com/amirhnajafiz/carrot/internal/rabbit"
 	"github.com/amirhnajafiz/carrot/internal/storage"
+	"github.com/amirhnajafiz/carrot/internal/telemetry"
 )
 
 func Execute() {
@@ -93,4 +94,7 @@ func provider(s client.Storage, cfg config.Config) {
 			time.Sleep(2 * time.Second)
 		}
 	}()
+
+	// starting prometheus server
+	telemetry.NewServer()
 }
