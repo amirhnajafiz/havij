@@ -8,9 +8,12 @@ import (
 	"github.com/streadway/amqp"
 )
 
+// Client manages the connection to rabbitMQ server.
 type Client struct {
-	Cfg        Config
+	Cfg Config
+
 	Queue      string
+	Provider   bool
 	Connection *amqp.Connection
 }
 
@@ -42,7 +45,6 @@ func (c *Client) Push(s string) error {
 			Body:        []byte(s),
 		},
 	)
-
 	if err != nil {
 		return err
 	}
@@ -65,12 +67,12 @@ func (c *Client) Listen(timeout int) error {
 		!c.Cfg.Wait,
 		nil,
 	)
-
 	if err != nil {
 		return err
 	}
 
 	forever := make(chan bool)
+
 	go func() {
 		for d := range messages {
 			parts := strings.Split(string(d.Body), " Brear ")

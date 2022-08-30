@@ -18,7 +18,7 @@ Basic things you need to set:
 ```yaml
 ...
 rabbit:
-  host: "[rabbitMQT address]"
+  host: "[rabbit address]"
 ...
 test:
   number: "number of tests"

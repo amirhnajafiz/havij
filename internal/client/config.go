@@ -1,5 +1,6 @@
 package client
 
+// Config for rabbitMQ client.
 type Config struct {
 	Durable    bool `koanf:"durable"`
 	AutoDelete bool `koanf:"auto_delete"`

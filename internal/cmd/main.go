@@ -7,7 +7,7 @@ import (
 	"github.com/amirhnajafiz/carrot/internal/client"
 	"github.com/amirhnajafiz/carrot/internal/config"
 	"github.com/amirhnajafiz/carrot/internal/logger"
-	"github.com/amirhnajafiz/carrot/internal/rabbitMQT"
+	"github.com/amirhnajafiz/carrot/internal/rabbit"
 	"github.com/amirhnajafiz/carrot/internal/test"
 )
 
@@ -22,7 +22,7 @@ func Execute() {
 	log.Println("start testing")
 
 	{
-		r, err := rabbitMQT.Init(c.Rabbit)
+		r, err := rabbit.Init(c.Rabbit)
 		if err != nil {
 			log.Fatalf("Rabbit connection failed %v\n", err)
 		}
@@ -43,7 +43,7 @@ func Execute() {
 		}()
 	}
 	{
-		r, err := rabbitMQT.Init(c.Rabbit)
+		r, err := rabbit.Init(c.Rabbit)
 		if err != nil {
 			log.Fatalf("Rabbit connection failed %v\n", err)
 		}

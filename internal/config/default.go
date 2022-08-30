@@ -2,7 +2,7 @@ package config
 
 import (
 	"github.com/amirhnajafiz/carrot/internal/client"
-	"github.com/amirhnajafiz/carrot/internal/rabbitMQT"
+	"github.com/amirhnajafiz/carrot/internal/rabbit"
 	"github.com/amirhnajafiz/carrot/internal/test"
 )
 
@@ -19,7 +19,7 @@ func Default() Config {
 			Local:      false,
 			AutoAck:    true,
 		},
-		Rabbit: rabbitMQT.Config{
+		Rabbit: rabbit.Config{
 			Host: "amqp://guest:guest@localhost:5672/",
 		},
 		Test: test.Config{
