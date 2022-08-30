@@ -21,7 +21,8 @@ func Default() Config {
 		Rabbit: rabbit.Config{
 			Host: "amqp://guest:guest@localhost:5672/",
 		},
-		Number:  10,
-		Timeout: 5,
+		Providers: 10,
+		Consumers: 20,
+		Timeout:   5,
 	}
 }

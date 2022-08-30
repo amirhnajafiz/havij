@@ -13,12 +13,15 @@ import (
 )
 
 type Config struct {
-	Queue   string        `koanf:"queue"`
-	Prefix  string        `koanf:"prefix"`
-	Client  client.Config `koanf:"client"`
-	Rabbit  rabbit.Config `koanf:"rabbit"`
-	Timeout int           `koanf:"timeout"`
-	Number  int           `koanf:"number"`
+	Queue  string `koanf:"queue"`
+	Prefix string `koanf:"prefix"`
+
+	Timeout   int `koanf:"timeout"`
+	Providers int `koanf:"number"`
+	Consumers int `koanf:"consumers"`
+
+	Client client.Config `koanf:"client"`
+	Rabbit rabbit.Config `koanf:"rabbit"`
 }
 
 func Load() Config {

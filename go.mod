@@ -3,7 +3,6 @@ module github.com/amirhnajafiz/carrot
 go 1.17
 
 require (
-	github.com/bxcodec/faker/v3 v3.8.0
 	github.com/knadh/koanf v1.4.1
 	github.com/streadway/amqp v1.0.0
 )
