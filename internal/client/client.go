@@ -3,18 +3,27 @@ package client
 import (
 	"log"
 	"strings"
+	"time"
 
-	"github.com/amirhnajafiz/carrot/internal/test"
 	"github.com/streadway/amqp"
 )
+
+// Storage manages the tests for client.
+type Storage interface {
+	Done(string, int) (bool, time.Duration)
+	Generate() (string, string)
+}
 
 // Client manages the connection to rabbitMQ server.
 type Client struct {
 	Cfg Config
 
+	Prefix     string
 	Queue      string
 	Provider   bool
 	Connection *amqp.Connection
+
+	Storage Storage
 }
 
 // Initialize creates a new queue over rabbitMQ.
@@ -42,12 +51,16 @@ func (c *Client) Initialize() error {
 }
 
 // Publish over rabbitMQ.
-func (c *Client) Publish(s string) error {
+func (c *Client) Publish() error {
 	// open channel
 	ch, err := c.Connection.Channel()
 	if err != nil {
 		return err
 	}
+
+	// create a new message
+	id, content := c.Storage.Generate()
+	s := id + c.Prefix + content
 
 	// publish over a channel
 	err = ch.Publish(
@@ -93,9 +106,9 @@ func (c *Client) Subscribe(timeout int) error {
 		for d := range messages {
 			parts := strings.Split(string(d.Body), " Brear ")
 
-			r, du := test.Done(parts[0], timeout)
+			r, du := c.Storage.Done(parts[0], timeout)
 
-			log.Printf("[test %s][duration %s][timeout %t]: %s \n", parts[0], du, !r, parts[1])
+			log.Printf("[storage %s][duration %s][timeout %t]: %s \n", parts[0], du, !r, parts[1])
 		}
 	}()
 

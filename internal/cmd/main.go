@@ -8,7 +8,7 @@ import (
 	"github.com/amirhnajafiz/carrot/internal/config"
 	"github.com/amirhnajafiz/carrot/internal/logger"
 	"github.com/amirhnajafiz/carrot/internal/rabbit"
-	"github.com/amirhnajafiz/carrot/internal/test"
+	"github.com/amirhnajafiz/carrot/internal/storage"
 )
 
 func Execute() {
@@ -16,13 +16,14 @@ func Execute() {
 	wg.Add(1)
 
 	c := config.Load()
-	tests := test.Generate(c.Test.Number)
+	s := storage.NewStorage()
 
-	logger.CreateLogFile("logs.txt")
-	log.Println("start testing")
+	if err := logger.CreateLogFile(); err != nil {
+		panic(err)
+	}
 
 	{
-		r, err := rabbit.Init(c.Rabbit)
+		r, err := rabbit.Connect(c.Rabbit)
 		if err != nil {
 			log.Fatalf("Rabbit connection failed %v\n", err)
 		}
@@ -31,10 +32,11 @@ func Execute() {
 			Cfg:        c.Client,
 			Connection: r,
 			Queue:      c.Queue,
+			Storage:    s,
 		}
 
 		go func() {
-			err := cli.Listen(c.Test.Timeout)
+			err := cli.Subscribe(c.Timeout)
 			if err != nil {
 				panic(err)
 			}
@@ -43,7 +45,7 @@ func Execute() {
 		}()
 	}
 	{
-		r, err := rabbit.Init(c.Rabbit)
+		r, err := rabbit.Connect(c.Rabbit)
 		if err != nil {
 			log.Fatalf("Rabbit connection failed %v\n", err)
 		}
@@ -52,12 +54,16 @@ func Execute() {
 			Cfg:        c.Client,
 			Connection: r,
 			Queue:      c.Queue,
+			Storage:    s,
 		}
 
-		for _, t := range tests {
-			err := cli.Push(t.Id + c.Prefix + t.Content)
-			if err != nil {
-				panic(err)
+		if err := cli.Initialize(); err != nil {
+			log.Fatalln(err)
+		}
+
+		for i := 0; i < c.Number; i++ {
+			if err := cli.Publish(); err != nil {
+				log.Println(err)
 			}
 		}
 	}

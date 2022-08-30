@@ -6,7 +6,6 @@ import (
 
 	"github.com/amirhnajafiz/carrot/internal/client"
 	"github.com/amirhnajafiz/carrot/internal/rabbit"
-	"github.com/amirhnajafiz/carrot/internal/test"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
@@ -14,11 +13,12 @@ import (
 )
 
 type Config struct {
-	Queue  string        `koanf:"queue"`
-	Prefix string        `koanf:"prefix"`
-	Client client.Config `koanf:"client"`
-	Rabbit rabbit.Config `koanf:"rabbit"`
-	Test   test.Config   `koanf:"test"`
+	Queue   string        `koanf:"queue"`
+	Prefix  string        `koanf:"prefix"`
+	Client  client.Config `koanf:"client"`
+	Rabbit  rabbit.Config `koanf:"rabbit"`
+	Timeout int           `koanf:"timeout"`
+	Number  int           `koanf:"number"`
 }
 
 func Load() Config {

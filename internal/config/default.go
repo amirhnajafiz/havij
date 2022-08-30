@@ -3,7 +3,6 @@ package config
 import (
 	"github.com/amirhnajafiz/carrot/internal/client"
 	"github.com/amirhnajafiz/carrot/internal/rabbit"
-	"github.com/amirhnajafiz/carrot/internal/test"
 )
 
 func Default() Config {
@@ -22,9 +21,7 @@ func Default() Config {
 		Rabbit: rabbit.Config{
 			Host: "amqp://guest:guest@localhost:5672/",
 		},
-		Test: test.Config{
-			Number:  10,
-			Timeout: 5,
-		},
+		Number:  10,
+		Timeout: 5,
 	}
 }
