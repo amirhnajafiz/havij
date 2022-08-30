@@ -1,12 +1,14 @@
 package storage
 
 import (
+	"github.com/amirhnajafiz/carrot/internal/telemetry"
 	"time"
 )
 
 // storage is for holding tests.
 type storage struct {
-	tests []*test
+	metrics telemetry.Metrics
+	tests   []*test
 }
 
 // test is a single message that
@@ -47,6 +49,8 @@ func (s *storage) find(Id string) bool {
 // Done
 // manage to finish a test.
 func (s *storage) Done(id string, timeout int) (bool, time.Duration) {
+	s.metrics.TotalReceive.Add(1)
+
 	if !s.find(id) {
 		return false, 0
 	}
@@ -57,7 +61,11 @@ func (s *storage) Done(id string, timeout int) (bool, time.Duration) {
 
 			if t.Duration > time.Duration(timeout) {
 				t.Missed = true
+
+				s.metrics.TimeoutReceive.Add(1)
 			}
+
+			s.metrics.ReceiveTime.Observe(float64(t.Duration))
 
 			return t.Missed, t.Duration
 		}
@@ -71,11 +79,15 @@ func (s *storage) Done(id string, timeout int) (bool, time.Duration) {
 func (s *storage) Generate() (string, string) {
 	t := s.create()
 
+	s.metrics.TotalPublish.Add(1)
+
 	return t.Id, t.Content
 }
 
 // NewStorage
 // generates a new store.
 func NewStorage() *storage {
-	return &storage{}
+	return &storage{
+		metrics: telemetry.NewMetrics(),
+	}
 }
