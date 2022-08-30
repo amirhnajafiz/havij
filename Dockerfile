@@ -4,7 +4,7 @@ WORKDIR /app/src/
 
 COPY . .
 
-WORKDIR /app/src/cmd
+WORKDIR /app/src
 
 RUN go build -o ./runner
 
