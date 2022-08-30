@@ -4,7 +4,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/amirhnajafiz/playful-rabbit/internal/test"
+	"github.com/amirhnajafiz/carrot/internal/test"
 	"github.com/streadway/amqp"
 )
 

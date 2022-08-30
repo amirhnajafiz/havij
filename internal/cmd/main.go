@@ -4,11 +4,11 @@ import (
 	"log"
 	"sync"
 
-	"github.com/amirhnajafiz/playful-rabbit/internal/client"
-	"github.com/amirhnajafiz/playful-rabbit/internal/config"
-	"github.com/amirhnajafiz/playful-rabbit/internal/logger"
-	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
-	"github.com/amirhnajafiz/playful-rabbit/internal/test"
+	"github.com/amirhnajafiz/carrot/internal/client"
+	"github.com/amirhnajafiz/carrot/internal/config"
+	"github.com/amirhnajafiz/carrot/internal/logger"
+	"github.com/amirhnajafiz/carrot/internal/rabbitMQT"
+	"github.com/amirhnajafiz/carrot/internal/test"
 )
 
 func Execute() {

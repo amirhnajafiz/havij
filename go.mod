@@ -1,4 +1,4 @@
-module github.com/amirhnajafiz/playful-rabbit
+module github.com/amirhnajafiz/carrot
 
 go 1.17
 

@@ -1,9 +1,9 @@
 package config
 
 import (
-	"github.com/amirhnajafiz/playful-rabbit/internal/client"
-	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
-	"github.com/amirhnajafiz/playful-rabbit/internal/test"
+	"github.com/amirhnajafiz/carrot/internal/client"
+	"github.com/amirhnajafiz/carrot/internal/rabbitMQT"
+	"github.com/amirhnajafiz/carrot/internal/test"
 )
 
 func Default() Config {

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/amirhnajafiz/playful-rabbit/internal/client"
-	"github.com/amirhnajafiz/playful-rabbit/internal/rabbitMQT"
-	"github.com/amirhnajafiz/playful-rabbit/internal/test"
+	"github.com/amirhnajafiz/carrot/internal/client"
+	"github.com/amirhnajafiz/carrot/internal/rabbitMQT"
+	"github.com/amirhnajafiz/carrot/internal/test"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"

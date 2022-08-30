@@ -1,6 +1,6 @@
 package main
 
-import "github.com/amirhnajafiz/playful-rabbit/internal/cmd"
+import "github.com/amirhnajafiz/carrot/internal/cmd"
 
 func main() {
 	cmd.Execute()
