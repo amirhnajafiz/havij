@@ -17,12 +17,15 @@ type Client struct {
 	Connection *amqp.Connection
 }
 
-func (c *Client) Push(s string) error {
+// Initialize creates a new queue over rabbitMQ.
+func (c *Client) Initialize() error {
+	// open channel
 	ch, err := c.Connection.Channel()
 	if err != nil {
 		return err
 	}
 
+	// declare queue
 	_, err = ch.QueueDeclare(
 		c.Queue,
 		c.Cfg.Durable,
@@ -35,6 +38,18 @@ func (c *Client) Push(s string) error {
 		return err
 	}
 
+	return nil
+}
+
+// Publish over rabbitMQ.
+func (c *Client) Publish(s string) error {
+	// open channel
+	ch, err := c.Connection.Channel()
+	if err != nil {
+		return err
+	}
+
+	// publish over a channel
 	err = ch.Publish(
 		"",
 		c.Queue,
@@ -52,7 +67,8 @@ func (c *Client) Push(s string) error {
 	return nil
 }
 
-func (c *Client) Listen(timeout int) error {
+// Subscribe over topic.
+func (c *Client) Subscribe(timeout int) error {
 	ch, err := c.Connection.Channel()
 	if err != nil {
 		return err
