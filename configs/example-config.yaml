@@ -1,5 +1,5 @@
-queue: ""
-prefix: ""
+queue: "test-queue"
+prefix: "pre"
 client:
   durable: false
   auto_delete: false
@@ -9,7 +9,7 @@ client:
   local: false
   auto_ack: true
 rabbit:
-  host: ""
-test:
-  number: 100
-  time_out: 2
+  host: "amqp://guest:guest@localhost:5672/"
+consumers: 10
+providers: 5
+time_out: 2

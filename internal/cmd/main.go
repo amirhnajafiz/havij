@@ -1,13 +1,14 @@
 package cmd
 
 import (
+	"log"
+	"time"
+
 	"github.com/amirhnajafiz/carrot/internal/client"
 	"github.com/amirhnajafiz/carrot/internal/config"
 	"github.com/amirhnajafiz/carrot/internal/logger"
 	"github.com/amirhnajafiz/carrot/internal/rabbit"
 	"github.com/amirhnajafiz/carrot/internal/storage"
-	"log"
-	"time"
 )
 
 func Execute() {
@@ -33,8 +34,10 @@ func Execute() {
 		}
 
 		if err := cli.Initialize(); err != nil {
-			log.Fatalln(err)
+			panic(err)
 		}
+
+		_ = r.Close()
 	}
 
 	// consumers
