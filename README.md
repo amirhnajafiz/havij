@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="assets/logo.png" width="200" alt="logo" />
+</p>
+
 <h1 align="center">
 Carrot
 </h1>
