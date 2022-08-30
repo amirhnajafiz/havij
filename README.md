@@ -1,14 +1,14 @@
-# playful-rabbit
+<h1 align="center">
+Carrot
+</h1>
 
-Test your RabbitMQT service with **playful rabbit**.
-
-## What is this project for?
-This is a golang service that tests your RabbitMQT server and gives
-you status about your service.
+Test your **RabbitMQ** service with a **Carrot**. Carrot checks your
+rabbitMQ service by subscribing and publishing over topics with Golang workers. After
+that it will give you metrics that shows your rabbitMQ service status.
 
 You can set the configs and then test your MQT server.
 
-## Configs
+### Configs
 Copy the example config file:
 ```shell
 cp ./configs/example-config.yaml ./config.yaml
@@ -18,24 +18,40 @@ Basic things you need to set:
 ```yaml
 ...
 rabbit:
-  host: "[rabbit address]"
+  host: "[string] RabbitMQ service address"
 ...
-test:
-  number: "number of tests"
-  time_out: "timeout for messages"
+consumers: "[int] number of subscribers"
+providers: "[int] number of publishers"
+time_out: "[int] timeout for messages"
 ```
 
-Now you can set the RabbitMQT address and some configs
+Now you can set the **RabbitMQT** address and some configs
 for the testing environment, like the number of tests, message
 timeout and ...
 
 ## Start
-You can run the project on docker with following command:
+### Go
+Execute the main go file:
+```shell
+go run main.go
+```
+
+### Docker
+Build and run with docker:
+```shell
+docker build . -t orange-carrot
+docker run -d -p 2112:2112 orange-carrot
+```
+
+Metrics will be exposed as **Prometheus** metrics over ```localhost:2112/metrics```.
+
+## Test
+You can run the project on docker (with a RabbitMQ service) with following command:
 ```shell
 docker-compose up -d
 ```
 
-Now you can get the test results in _log.txt_ file in **playful-rabbit** container, in _app_ directory.
+Now you can get the test results in _log.txt_ file in **carrot** container, in _app_ directory.
 
 Testing result sample:
 ```shell
