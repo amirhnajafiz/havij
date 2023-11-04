@@ -1,4 +1,4 @@
-module github.com/amirhnajafiz/carrot
+module github.com/amirhnajafiz/havij
 
 go 1.17
 

@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/amirhnajafiz/carrot/internal/client"
-	"github.com/amirhnajafiz/carrot/internal/rabbit"
+	"github.com/amirhnajafiz/havij/internal/client"
+	"github.com/amirhnajafiz/havij/internal/rabbit"
 )
 
 func Default() Config {

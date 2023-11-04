@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    container_name: carrot
+    container_name: havij
     depends_on:
       - rabbitmq
     build:

@@ -4,12 +4,12 @@ import (
 	"log"
 	"time"
 
-	"github.com/amirhnajafiz/carrot/internal/client"
-	"github.com/amirhnajafiz/carrot/internal/config"
-	"github.com/amirhnajafiz/carrot/internal/logger"
-	"github.com/amirhnajafiz/carrot/internal/rabbit"
-	"github.com/amirhnajafiz/carrot/internal/storage"
-	"github.com/amirhnajafiz/carrot/internal/telemetry"
+	"github.com/amirhnajafiz/havij/internal/client"
+	"github.com/amirhnajafiz/havij/internal/config"
+	"github.com/amirhnajafiz/havij/internal/logger"
+	"github.com/amirhnajafiz/havij/internal/rabbit"
+	"github.com/amirhnajafiz/havij/internal/storage"
+	"github.com/amirhnajafiz/havij/internal/telemetry"
 )
 
 func Execute() {

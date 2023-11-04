@@ -3,7 +3,7 @@ package storage
 import (
 	"time"
 
-	"github.com/amirhnajafiz/carrot/internal/telemetry"
+	"github.com/amirhnajafiz/havij/internal/telemetry"
 )
 
 // storage is for holding tests.

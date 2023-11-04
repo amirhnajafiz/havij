@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/amirhnajafiz/carrot/internal/client"
-	"github.com/amirhnajafiz/carrot/internal/rabbit"
+	"github.com/amirhnajafiz/havij/internal/client"
+	"github.com/amirhnajafiz/havij/internal/rabbit"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"

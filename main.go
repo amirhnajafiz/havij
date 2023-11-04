@@ -1,6 +1,6 @@
 package main
 
-import "github.com/amirhnajafiz/carrot/internal/cmd"
+import "github.com/amirhnajafiz/havij/internal/cmd"
 
 func main() {
 	cmd.Execute()
