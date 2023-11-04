@@ -1,24 +1,20 @@
-<p align="center">
-    <img src="assets/logo.png" width="200" alt="logo" />
-</p>
+# Havij
 
-<h1 align="center">
-Carrot
-</h1>
-
-Test your **RabbitMQ** service with a **Carrot**. Carrot checks your
+Test your **RabbitMQ** service with a Havij (aka Carrot). Havij checks your
 rabbitMQ service by subscribing and publishing over topics with Golang workers. After
 that it will give you metrics that shows your rabbitMQ service status.
+You can set the configs and then test your MQTT server.
 
-You can set the configs and then test your MQT server.
+## Configs
 
-### Configs
 Copy the example config file:
+
 ```shell
 cp ./configs/example-config.yaml ./config.yaml
 ```
 
 Basic things you need to set:
+
 ```yaml
 ...
 rabbit:
@@ -34,23 +30,30 @@ for the testing environment, like the number of tests, message
 timeout and ...
 
 ## Start
+
 ### Go
+
 Execute the main go file:
+
 ```shell
 go run main.go
 ```
 
 ### Docker
+
 Build and run with docker:
+
 ```shell
-docker build . -t orange-carrot
-docker run -d -p 2112:2112 orange-carrot
+docker build . -t havij
+docker run -d -p 2112:2112 havij
 ```
 
 Metrics will be exposed as **Prometheus** metrics over ```localhost:2112/metrics```.
 
 ## Test
+
 You can run the project on docker (with a RabbitMQ service) with following command:
+
 ```shell
 docker-compose up -d
 ```
@@ -58,6 +61,7 @@ docker-compose up -d
 Now you can get the test results in _log.txt_ file in **carrot** container, in _app_ directory.
 
 Testing result sample:
+
 ```shell
 2022/04/14 10:53:13 start testing
 2022/04/14 10:53:13 [storage 1970-01-01 03:30:00 +0330 +0330][duration 42.324375ms][timeout false]: Consequatur aut perferendis voluptatem sit accusantium. 
